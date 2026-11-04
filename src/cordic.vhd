@@ -18,7 +18,20 @@
 --! | Hiperbólico | ArcTanH(2^-i) |
 --! | Circular | ArcTan(2^-i) |
 
+--! Modo de operación (MODE_I)
+--! --
+--! | Modo | Configuración |
+--! |------|---------|
+--! |  00  | Circular |
+--! |  01  | Linear |
+--! |  10  | Hiperbolico |
 
+--! Operación del Cordic (OP_I)
+--! --
+--! | Valor | Operación |
+--! |-------|-----------|
+--! |   0   | Rotación |
+--! |   1   | Vectorización |
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.all;
