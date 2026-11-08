@@ -6,19 +6,29 @@
 
 --! Fórmulas
 --! --
---! X_i+1 = X_i - d_i·Y_i·2^i
+--! X_i+1 = X_i - m·d_i·Y_i·2^i
 --!
 --! Y_i+1 = Y_i + X_i·d_i·2^i
 --!
 --! Z_i+1 = Z_i - d_i·e_i
 
+--!  m
+--! --
+--!  | valor | Parámetro |
+--!  |------|---------|
+--!  |  1  | Circular |
+--!  |  0  | Linear |
+--!  |  -1  | Hiperbolico |
+
+--! e_i
+--! --
 --! | Configuración | e_i |
 --! |---------------|-----|
 --! | Lineal | 2^-i |
 --! | Hiperbólico | ArcTanH(2^-i) |
 --! | Circular | ArcTan(2^-i) |
 
---! Modo de operación (MODE_I)
+--! Modo de operación (MODE_I) -> m
 --! --
 --! | Modo | Configuración |
 --! |------|---------|
@@ -26,7 +36,7 @@
 --! |  01  | Linear |
 --! |  10  | Hiperbolico |
 
---! Operación del Cordic (OP_I)
+--! Operación del Cordic (OP_I) -> e_i
 --! --
 --! | Valor | Operación |
 --! |-------|-----------|
@@ -302,7 +312,7 @@ begin
           y_shift := shift_right(r_y, r_cont_iter);
 
           --------------------------------
-          -- MODO CIRCULAR
+          -- MODO CIRCULAR (m=1)
           --------------------------------
           if r_mode = C_CIRCULAR then
             -- Rotación = X -> Cos / Y -> Sen
@@ -337,7 +347,7 @@ begin
             end if;
 
             --------------------------------
-            -- MODO LINEAL
+            -- MODO LINEAL (m=0)
             --------------------------------
           elsif r_mode = C_LINEAL then
             -- Rotación = Multiplicacion lineal.
@@ -374,7 +384,7 @@ begin
             end if;
 
             --------------------------------
-            -- MODO HIPERBOLICO
+            -- MODO HIPERBOLICO (m=-1)
             --------------------------------
           elsif r_mode = C_HIPERBOLICO then
             -- Rotación = X -> CosH / Y -> SenH

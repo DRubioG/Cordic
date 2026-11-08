@@ -12,11 +12,21 @@ Implementación del Algoritmo Cordic en VHDL
 
  ## Fórmulas
 
- X_i+1 = X_i - d_i·Y_i·2^i
+ X_i+1 = X_i - m·d_i·Y_i·2^i
 
  Y_i+1 = Y_i + X_i·d_i·2^i
 
  Z_i+1 = Z_i - d_i·e_i
+
+ ### m
+ 
+ | valor | Parámetro |
+ |------|---------|
+ |  1  | Circular |
+ |  0  | Linear |
+ |  -1  | Hiperbolico |
+
+### e_i
 
  | Configuración | e_i |
  |---------------|-----|
